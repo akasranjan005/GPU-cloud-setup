@@ -40,24 +40,21 @@ usage: 0.0
 
 * Install CUDA 8.0 drivers:
 
-`curl -O http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb`
-
-`sudo dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb`
-
-`sudo apt-get update`
-
-`rm cuda-repo-ubuntu1604_8.0.61-1_amd64.deb`
-
-`sudo apt-get install cuda -y`
-
-`nvidia-smi`
+```curl -O http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
+sudo apt-get update
+rm cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
+sudo apt-get install cuda -y
+nvidia-smi
+```
 
 * Set environment variables:
 
-`echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.bashrc`
-`echo 'export PATH=$PATH:$CUDA_HOME/bin' >> ~/.bashrc`
-`echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64' >> ~/.bashrc`
-`source ~/.bashrc`
+```echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.bashrc
+echo 'export PATH=$PATH:$CUDA_HOME/bin' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64' >> ~/.bashrc
+source ~/.bashrc
+```
 
 ## Step 5: Install cuDNN - Library runs on top of CUDA to speed up deep Neural network parallel computing
 
@@ -67,9 +64,10 @@ Move the downloaded file to the home directory in my case it is /home/anveshtumm
 
 *Note: We need to move the tgz file to the google instance, for this first we need to create the SSH key pairs using the following link [create sshKeyPair](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys)*. Make sure you have the ssh keys already created by checking your Cloud instance using, first go to home with
 
-`cd`
-`cd .ssh/`
-`ls`   #this list out the ssh key pairs you already have
+```cd
+cd .ssh/
+ls   #this list out the ssh key pairs you already have
+```
 
 
 `gcloud compute scp gpu-deep-learner:~/.ssh/google_compute_engine* ~/.ssh/ --zone us-east1-d`
@@ -80,28 +78,30 @@ Above line copies the ssh key pairs to my local home/account/.ssh/keyname. Later
 
 Now, back to the remote instance and unzip the tgz file.
 
-`cd`
-`tar xzvf cudnn-8.0-linux-x64-v7.1.tgz`
-`sudo cp cuda/lib64/* /usr/local/cuda/lib64/`
-`sudo cp cuda/include/cudnn.h /usr/local/cuda/include/`
-`rm -rf ~/cuda`
-`rm cudnn-8.0-linux-x64-v7.1.tgz`
+```cd
+tar xzvf cudnn-8.0-linux-x64-v7.1.tgz
+sudo cp cuda/lib64/* /usr/local/cuda/lib64/
+sudo cp cuda/include/cudnn.h /usr/local/cuda/include/
+rm -rf ~/cuda
+rm cudnn-8.0-linux-x64-v7.1.tgz
+```
 
 This completes the NVIDIA/CUDA setup, install Python and other deep learning libraries. I prefer Anaconda to install packages.
 
 ## Step 6: Installing Anaconda and other libraries
 
-`curl -O https://repo.continuum.io/archive/Anaconda3-4.3.1-Linux-x86_64.sh`
-
-`bash Anaconda3-4.3.1-Linux-x86_64.sh`
+```curl -O https://repo.continuum.io/archive/Anaconda3-4.3.1-Linux-x86_64.sh
+bash Anaconda3-4.3.1-Linux-x86_64.sh
+```
 
 
 * If conda does not get recognized, set the environment variable
 `export PATH="$HOME/anaconda3/bin:$PATH"`
 
 * Create environment for gpu
-`conda create -n gpu python=3.6`
-`source activate gpu`
+```conda create -n gpu python=3.6
+source activate gpu
+```
 
 * Install tensorflow-gpu, keras
 
@@ -114,9 +114,9 @@ This completes the NVIDIA/CUDA setup, install Python and other deep learning lib
 `conda install ipython jupyter scipy seaborn scikit-learn keras`
 
 ## Step 8: SSH tunnel forwarding
-`mkdir notebooks`
-`cd notebooks`
-`jupyter notebook`
+```mkdir notebooks
+cd notebooks
+jupyter notebook```
 
 This gives the message that notebook is running at http://localhost:8888/?token=XXXXXXXXXXXXXXXX
 
