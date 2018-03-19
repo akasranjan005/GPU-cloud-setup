@@ -41,10 +41,15 @@ usage: 0.0
 * Install CUDA 8.0 drivers:
 
 `curl -O http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb`
+
 `sudo dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb`
+
 `sudo apt-get update`
+
 `rm cuda-repo-ubuntu1604_8.0.61-1_amd64.deb`
+
 `sudo apt-get install cuda -y`
+
 `nvidia-smi`
 
 * Set environment variables:
@@ -106,12 +111,7 @@ This completes the NVIDIA/CUDA setup, install Python and other deep learning lib
 
 ## Step 7: Configure Jupyter
 
-`conda install ipython`
-`conda install jupyter`
-`conda install scipy`
-`conda install seaborn`
-`conda install scikit-learn`
-`conda install keras`
+`conda install ipython jupyter scipy seaborn scikit-learn keras`
 
 ## Step 8: SSH tunnel forwarding
 `mkdir notebooks`
